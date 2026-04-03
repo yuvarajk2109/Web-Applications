@@ -6,3 +6,4 @@ A collection of my foundational web applications showcasing a range of front-end
 3) Factorial
 4) Fibonacci
 5) Styling with Javascript
+6) To Do List
