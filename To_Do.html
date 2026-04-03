@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #taskInput {
+            width: 300px;
+            padding: 10px;
+        }
+        #addTaskBtn {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #addTaskBtn:hover {
+            background-color: #218838;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        ul li.completed {
+            text-decoration: line-through;
+            background-color: #d4edda;
+        }
+        .deleteBtn {
+            padding: 5px 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .deleteBtn:hover {
+            background-color: #c82333;
+        }
+        .completeBtn {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .completeBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <h1>Dynamic To-Do List</h1>
+
+    <input type="text" id="taskInput" placeholder="Enter a new task" />
+    <button id="addTaskBtn">Add Task</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+        $(document).ready(function() {
+            $("#addTaskBtn").click(function() {
+                const taskText = $("#taskInput").val().trim();
+                if (taskText !== "") {
+                    const taskItem = `
+                        <li>
+                            <span>${taskText}</span>
+                            <div>
+                                <button class="completeBtn">Complete</button>
+                                <button class="deleteBtn">Delete</button>
+                            </div>
+                        </li>
+                    `;
+                    $("#taskList").append(taskItem);
+                    $("#taskInput").val("");
+                }
+            });
+
+            $(document).on("click", ".completeBtn", function() {
+                $(this).parent().parent().toggleClass("completed");
+            });
+
+            $(document).on("click", ".deleteBtn", function() {
+                $(this).parent().parent().remove();
+            });
+        });
+    </script>
+
+</body>
+</html>
